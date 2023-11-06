@@ -5,6 +5,7 @@ import { Filter } from './Filter';
 import { List } from './List';
 import { Loading } from './Loading';
 import { Error } from './Error';
+import { Navigation } from './Navigation/Navigation';
 import { selectContacts, selectError, selectIsLoading } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,6 +22,7 @@ const App = () => {
   }, [dispatch]);
 
   return (<Container>
+    <Navigation></Navigation>
           <h1>Phonebook</h1>
     <Form></Form>
         <h2>Contacts</h2>

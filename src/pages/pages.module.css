@@ -1,0 +1,14 @@
+.form {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+}
+.label {
+        padding: 10px;
+}
+.btn {
+        max-width: 140px;
+        padding: 11px 20px;
+        margin-right: auto;
+        margin-left: auto;
+}

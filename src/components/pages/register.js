@@ -45,6 +45,7 @@ export default function RegisterPage() {
             value={name}
             onChange={handleChange}
             className={css.input}
+            placeholder="Enter your name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           ></input>
         </label>
@@ -55,6 +56,7 @@ export default function RegisterPage() {
             name="email"
             value={email}
             onChange={handleChange}
+            placeholder="Enter your e-mail"
             className={css.input}
           ></input>
         </label>

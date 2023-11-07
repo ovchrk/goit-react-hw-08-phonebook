@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { Navigation } from './Navigation/Navigation';
 import { Route, Routes } from 'react-router-dom';
 import RegisterPage from './pages/register';
-
+import LoginPage from './pages/login';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const App = () => {
     <Navigation></Navigation>
     <Routes>
       <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
-      <Route path='/login' element={<div>LOGIN PAGE</div>}></Route>
+      <Route path='/login' element={<LoginPage></LoginPage>}></Route>
       <Route path='/contacts' element={<ContactsPage></ContactsPage>}></Route>
       <Route path='*' element={<RegisterPage></RegisterPage>}></Route>
     </Routes>

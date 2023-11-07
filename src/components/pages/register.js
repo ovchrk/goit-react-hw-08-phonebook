@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 import css from './pages.module.css';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
   const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
@@ -25,7 +28,7 @@ export default function RegisterPage() {
   const handleSubmit = e => {
     e.preventDefault();
     const newUser = { name, email, password };
-    console.log(newUser);
+    dispatch(register(newUser));
     setName('');
     setEmail('');
     setPassword('');
@@ -63,6 +66,7 @@ export default function RegisterPage() {
             value={password}
             onChange={handleChange}
             className={css.input}
+            placeholder="Please enter at least 7 symbols"
           ></input>
         </label>
         <button type="submit" onClick={handleSubmit} className={css.submit}>

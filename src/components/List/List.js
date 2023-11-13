@@ -2,20 +2,16 @@ import React, { useEffect } from 'react';
 import css from '../List/List.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from 'redux/operations';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectFilteredContacts } from 'redux/selectors';
 
 export const List = () => {
-  const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter)
-  );
+  const filteredContacts = useSelector(selectFilteredContacts);
 
   return (
     <div>

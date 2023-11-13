@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 const { createAsyncThunk } = require('@reduxjs/toolkit');
 
 axios.defaults.baseURL = `https://connections-api.herokuapp.com`;
@@ -14,35 +15,42 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common['Authorization'] = '';
 };
 
-export const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const res = await axios.post(`/users/signup`, credentials);
-    setAuthHeader(res.data.token);
-    return res.data;
-  } catch (err) {
-    console.log(err);
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post(`/users/signup`, credentials);
+      setAuthHeader(res.data.token);
+      return res.data;
+    } catch (err) {
+      toast.error(
+        'E-mail or password is wrong. Please enter the correct e-mail and password'
+      );
+      return thunkAPI.rejectWithValue(err.message);
+    }
   }
-});
+);
 
-export const login = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const res = await axios.post(`/users/login`, credentials);
-    console.log(res.data);
-    setAuthHeader(res.data.token);
-    return res.data;
-  } catch (err) {
-    console.log(err);
+export const login = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post(`/users/login`, credentials);
+      setAuthHeader(res.data.token);
+      return res.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
   }
-});
+);
 
-export const logout = createAsyncThunk('auth/logout', async () => {
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     const res = await axios.post(`/users/logout`);
-    console.log(`logging out`);
     clearAuthHeader();
     return res.data;
   } catch (err) {
-    console.log(err);
+    return thunkAPI.rejectWithValue(err.message);
   }
 });
 
@@ -52,7 +60,7 @@ export const refreshCurrentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue(`Unable to fetch user`);
+      return thunkAPI.rejectWithValue();
     }
     setAuthHeader(persistedToken);
 
@@ -61,6 +69,7 @@ export const refreshCurrentUser = createAsyncThunk(
       return data;
     } catch (err) {
       console.log(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );

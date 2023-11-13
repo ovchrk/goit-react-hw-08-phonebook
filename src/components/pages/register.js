@@ -1,5 +1,7 @@
+import { Error } from 'components/Error';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectError } from 'redux/auth/authSelectors';
 import { register } from 'redux/auth/operations';
 import css from './pages.module.css';
 
@@ -8,6 +10,8 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
+
   const handleChange = e => {
     const { name, value } = e.target;
     switch (name) {
@@ -37,6 +41,7 @@ export default function RegisterPage() {
     <>
       <h1>Registration Page</h1>
       <form className={css.form}>
+        {error && <Error></Error>}
         <label className={css.label}>
           name:
           <input

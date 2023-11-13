@@ -3,6 +3,7 @@ import { Container } from './Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppBar } from './AppBar/AppBar';
 import { Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 // import { fetchContacts } from 'redux/operations';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { Loading } from './Loading';
@@ -29,6 +30,10 @@ const App = () => {
   // }, [dispatch]);
 
   return (<Container>
+    <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
     {isRefreshing ? <Loading></Loading> : <Routes>
       <Route path='/' element={<AppBar></AppBar>}>
         <Route index element={<HomePage></HomePage>}></Route>
@@ -55,7 +60,8 @@ const App = () => {
           {/* <Route path='/contacts' element={<ContactsPage></ContactsPage>}></Route> */}
           {/* <Route path='*' element={<HomePage></HomePage>}></Route> */}
       </Route>
-    </Routes> } 
+    </Routes>} 
+    {}
     </Container> )
 }
 export { App };

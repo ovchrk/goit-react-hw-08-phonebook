@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppBar } from './AppBar/AppBar';
 import { Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-// import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/operations';
 import { refreshCurrentUser } from 'redux/auth/operations';
 import { Loading } from './Loading';
 import { selectIsRefreshing } from 'redux/auth/authSelectors';
@@ -25,9 +25,9 @@ const App = () => {
     dispatch(refreshCurrentUser())
   }, [dispatch])
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (<Container>
     <Toaster

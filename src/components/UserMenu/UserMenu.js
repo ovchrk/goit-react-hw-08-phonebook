@@ -10,6 +10,9 @@ export const UserMenu = () => {
 
   return (
     <div className={css.menu}>
+      <Link to="/" className={css.link}>
+        Home
+      </Link>
       <Link to="/contacts" className={css.link}>
         Contacts
       </Link>

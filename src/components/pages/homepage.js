@@ -1,7 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import css from './pages.module.css';
 
 export default function HomePage() {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  console.log(`logged`, isLoggedIn);
   return (
     <main>
       <h1 className={css.title}>
@@ -59,14 +63,20 @@ export default function HomePage() {
           seamless, delightful contact management!
         </li>
       </ul>
-      <div>
-        <Link to="/register" className={css.link}>
-          register
+      {isLoggedIn ? (
+        <Link to="/contacts" className={css.link}>
+          Contacts
         </Link>
-        <Link to="/login" className={css.link}>
-          log in
-        </Link>
-      </div>
+      ) : (
+        <div>
+          <Link to="/register" className={css.link}>
+            register
+          </Link>
+          <Link to="/login" className={css.link}>
+            log in
+          </Link>
+        </div>
+      )}
     </main>
   );
 }

@@ -53,7 +53,7 @@ const App = () => {
           }
         />
           {/* <Route path='/contacts' element={<ContactsPage></ContactsPage>}></Route> */}
-          <Route path='*' element={<HomePage></HomePage>}></Route>
+          {/* <Route path='*' element={<HomePage></HomePage>}></Route> */}
       </Route>
     </Routes> } 
     </Container> )

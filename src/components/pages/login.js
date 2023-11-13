@@ -25,8 +25,6 @@ export default function LoginPage() {
     e.preventDefault();
     const user = { email, password };
     dispatch(login(user));
-    console.log(user);
-
     setEmail('');
     setPassword('');
   };

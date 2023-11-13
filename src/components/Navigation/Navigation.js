@@ -4,6 +4,9 @@ import css from './Navigation.module.css';
 export const Navigation = () => {
   return (
     <>
+      <Link to="/" className={css.link}>
+        Home
+      </Link>
       <Link to="/register" className={css.link}>
         Register
       </Link>

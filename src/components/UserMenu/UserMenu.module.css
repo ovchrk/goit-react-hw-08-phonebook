@@ -2,10 +2,12 @@
         display: flex;
         flex-direction: row;
         align-items: baseline;
+       gap: 50px;
 }
 
 .email {
         margin: 0;
+        margin-right: 20px;
 }
 
 .btn {
@@ -21,4 +23,5 @@
 .link {
         text-decoration: none;
         color: black;
+        padding: 15px;
 }
